@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BORNEO — Wisdom of the Forest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="BORNEO is a quiet luxury brand inspired by orangutans and the Borneo rainforest, creating sanctuary objects for rest, ritual, and calm." />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #0f1311;
+      --bg-alt: #151a17;
+      --bg-light: #f5f1ea;
+      --card-bg: #191f1b;
+      --accent: #c96b3c;      /* orangutan rust */
+      --accent-soft: #e3b18f;
+      --text: #f7f4ee;
+      --text-muted: #c5c1b7;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 22px 40px rgba(0, 0, 0, 0.32);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --gap-section: 96px;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at top, #1f2621 0, #060806 48%, #020302 100%);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 24px 16px 64px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-inner {
+      width: 100%;
+      max-width: var(--max-width);
+    }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      gap: 16px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 20%, var(--accent-soft), var(--accent));
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 32% 18%;
+      border-radius: 999px;
+      border: 2px solid rgba(0,0,0,0.45);
+      border-top: 0;
+      border-left: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline-mini {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 1px;
+      background: var(--accent-soft);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(201, 107, 60, 0.5);
+      background: linear-gradient(135deg, rgba(201,107,60,0.16), rgba(16,20,18,0.2));
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      transition: background 0.2s ease, transform 0.12s ease, border-color 0.2s ease;
+    }
+
+    .nav-cta span {
+      font-size: 1rem;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      border-color: rgba(201,107,60,0.9);
+      background: linear-gradient(135deg, rgba(201,107,60,0.32), rgba(16,20,18,0.7));
+    }
+
+    /* HERO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 40px;
+      align-items: center;
+      margin-bottom: var(--gap-section);
+    }
+
+    .hero-pill {
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-pill::before {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: linear-gradient(to right, rgba(201,107,60,0), rgba(201,107,60,0.9));
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+
+    .hero-subtitle {
+      max-width: 440px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      margin-bottom: 26px;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .btn-primary {
+      padding: 13px 24px;
+      border-radius: var(--radius-pill);
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--accent), #d68656);
+      color: #1a120e;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .btn-secondary-link {
+      border-radius: var(--radius-pill);
+      padding: 10px 14px;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(16,19,16,0.72);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+      transition: border 0.2s ease, background 0.2s ease, transform 0.12s ease;
+    }
+
+    .btn-secondary-link span {
+      font-size: 1.1rem;
+    }
+
+    .btn-secondary-link:hover {
+      border-color: rgba(255,255,255,0.16);
+      background: rgba(16,19,16,0.9);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-media {
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      background: radial-gradient(circle at top, #273228, #0b0f0c);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      border-radius: calc(var(--radius-xl) - 8px);
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .hero-media-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: rgba(6,8,6,0.7);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted);
+      backdrop-filter: blur(16px);
+      z-index: 2;
+    }
+
+    /* SECTION WRAPPER */
+    section {
+      margin-bottom: var(--gap-section);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+      margin-bottom: 12px;
+    }
+
+    .section-heading {
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .section-lead {
+      max-width: 560px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+
+    /* STORY */
+    .story {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .story-block {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      padding: 24px 24px 20px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .story-text {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    .story-highlight {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.9rem;
+      color: var(--accent-soft);
+    }
+
+    /* PRODUCT / SANCTUARY SECTION */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+      gap: 32px;
+      align-items: start;
+    }
+
+    .pill-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .product-card-main {
+      background: linear-gradient(135deg, rgba(201,107,60,0.16), rgba(10,12,10,0.9));
+      border-radius: var(--radius-xl);
+      padding: 22px 22px 20px;
+      border: 1px solid rgba(201,107,60,0.4);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .product-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .product-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .product-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .product-features li {
+      margin-bottom: 6px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .product-features li::before {
+      content: "•";
+      color: var(--accent-soft);
+      margin-top: 1px;
+    }
+
+    .product-cta-inline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .product-cta-inline span {
+      font-size: 1.1rem;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+    }
+
+    .small-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 16px 16px 14px;
+      border: 1px solid var(--border-subtle);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .small-card-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    /* RITUALS */
+    .rituals {
+      background: radial-gradient(circle at top, #273228, #080b09);
+      border-radius: var(--radius-xl);
+      padding: 26px 22px 22px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .ritual-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .ritual-title {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+      font-size: 0.96rem;
+    }
+
+    .tagline-soft {
+      font-size: 0.88rem;
+      color: var(--accent-soft);
+    }
+
+    /* IMPACT */
+    .impact {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .impact-body {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .impact-note {
+      font-size: 0.85rem;
+      margin-top: 12px;
+      color: var(--accent-soft);
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    .final-cta h2 {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .final-cta p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+      margin-bottom: 22px;
+    }
+
+    .final-cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    footer {
+      margin-top: 42px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    footer a {
+      color: var(--accent-soft);
+      font-size: 0.8rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 880px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .story,
+      .two-col,
+      .impact {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-media {
+        order: -1;
+      }
+
+      .page {
+        padding: 18px 14px 40px;
+      }
+
+      section {
+        margin-bottom: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="page-inner">
+
+      <!-- NAV -->
+      <header class="nav">
+        <div class="brand-lockup">
+          <div class="brand-mark"></div>
+          <div class="brand-text">
+            <div class="brand-name">BORNEO</div>
+            <div class="brand-tagline-mini">Wisdom of the Forest</div>
+          </div>
+        </div>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#story">Story</a>
+          <a href="#guardian">Guardian</a>
+          <a href="#sanctuary">Sanctuary</a>
+          <a href="#impact">Impact</a>
+        </nav>
+        <button class="nav-cta" onclick="document.getElementById('guardian').scrollIntoView({behavior: 'smooth'});">
+          Adopt Guardian <span>↗</span>
+        </button>
+      </header>
+
+      <!-- HERO -->
+      <main>
+        <section class="hero" id="top">
+          <div>
+            <div class="hero-pill">Quiet Luxury from the Rainforest</div>
+            <h1 class="hero-title">Wisdom of the Forest. Comfort for the Modern World.</h1>
+            <p class="hero-subtitle">
+              Inspired by the orangutans of Borneo, BORNEO creates sanctuary objects designed for rest, ritual, and emotional grounding.
+            </p>
+            <div class="hero-cta-row">
+              <button class="btn-primary" onclick="document.getElementById('guardian').scrollIntoView({behavior: 'smooth'});">
+                Adopt Your Guardian <span>⭑</span>
+              </button>
+              <button class="btn-secondary-link" onclick="document.getElementById('sanctuary').scrollIntoView({behavior: 'smooth'});">
+                <span>↳</span> Build Your Sanctuary
+              </button>
+            </div>
+            <div class="hero-note">
+              A quiet brand for people who choose rest over rush, roots over noise.
+            </div>
+          </div>
+          <div class="hero-media">
+            <div class="hero-media-tag">Forest Portrait</div>
+            <img src="orangutaneo1.jpg" alt="Orangutan-inspired BORNEO hero visual" class="hero-image" />
+          </div>
+        </section>
+
+        <!-- STORY -->
+        <section id="story">
+          <div class="section-label">The Story</div>
+          <h2 class="section-heading">Why BORNEO Exists</h2>
+          <p class="section-lead">
+            In the deep rainforests of Borneo live the ancient watchers — the orangutans. Slow, gentle, and impossibly wise, they move through the canopy with a patience our modern lives have forgotten.
+          </p>
+          <div class="story">
+            <div class="story-block">
+              <p class="story-text">
+                BORNEO was created to bring that wisdom back.<br><br>
+                Each piece we design carries the stillness of the forest, the warmth of a guardian, and the quiet reminder that rest is not a luxury — it is our nature.
+              </p>
+              <div class="story-highlight">
+                <em>We don’t chase attention. We build sanctuaries that earn it quietly.</em>
+              </div>
+            </div>
+            <div class="story-block">
+              <p class="story-text">
+                In a world of constant scrolling, BORNEO is an invitation to slow down. To hold something that feels alive with memory. To remember what it’s like to be rooted, even when you’re far from home.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- GUARDIAN PRODUCT -->
+        <section id="guardian">
+          <div class="section-label">The Hero</div>
+          <h2 class="section-heading">The Guardian Plush</h2>
+          <p class="section-lead">
+            A weighted baby orangutan designed to calm the mind, ease the body, and hold you the way the forest holds its young.
+          </p>
+          <div class="two-col">
+            <div class="product-card-main">
+              <div class="pill-tag">Weighted Baby Orangutan Plush</div>
+              <h3 class="product-title">A Sanctuary Disguised as a Companion</h3>
+              <p class="product-subtitle">
+                Not a toy. A quiet guardian you can sleep with, travel with, and trust to be there on the days that feel heavy.
+              </p>
+              <ul class="product-features">
+                <li>Weighted for deep pressure comfort and calm.</li>
+                <li>Ultra-soft fur inspired by orangutan warmth and safety.</li>
+                <li>Designed for adults and children who need a quiet anchor.</li>
+                <li>Hand-finished expression for real emotional connection.</li>
+                <li>Includes a Ritual Card and Story of the Guardian.</li>
+              </ul>
+              <div class="product-cta-inline" onclick="document.getElementById('cta-final').scrollIntoView({behavior: 'smooth'});">
+                Adopt Your Guardian <span>↗</span>
+              </div>
+            </div>
+            <div class="hero-media">
+              <div class="hero-media-tag">Guardian Plush</div>
+              <img src="orangutaneo2.jpg" alt="BORNEO Guardian weighted orangutan plush" class="hero-image" />
+            </div>
+          </div>
+        </section>
+
+        <!-- SANCTUARY OBJECTS -->
+        <section id="sanctuary">
+          <div class="section-label">Sanctuary Objects</div>
+          <h2 class="section-heading">For Sleep, Ritual, and Calm</h2>
+          <p class="section-lead">
+            BORNEO is a family of objects designed to turn small daily moments into rituals — from the way you fall asleep to how you enter a new space.
+          </p>
+          <div class="grid-cards">
+            <div class="small-card">
+              <div class="small-card-title">Canopy Sleep Set</div>
+              Silk pillowcases and eye masks inspired by rainforest nights — cool against the skin, gentle on the hair, designed to signal your body that it’s time to let go.
+            </div>
+            <div class="small-card">
+              <div class="small-card-title">Forest-Breath Mist</div>
+              A room spray of fern, wet earth, and rainlight. One breath to soften the edges of a hard day.
+            </div>
+            <div class="small-card">
+              <div class="small-card-title">Nest Candle</div>
+              Resin, moss, and warm wood smoke. A scent that feels like dusk in the rainforest; grounded, slow, and quietly alive.
+            </div>
+            <div class="small-card">
+              <div class="small-card-title">Sleep Journal</div>
+              A minimalist guided journal to empty your thoughts before sleep and anchor your nights in something gentler than a screen.
+            </div>
+            <div class="small-card">
+              <div class="small-card-title">Carry-Borneo Pouch</div>
+              A soft, structured pouch to carry your Guardian or small sanctuary objects — for flights, offices, or new cities that don’t yet feel like home.
+            </div>
+          </div>
+        </section>
+
+        <!-- RITUALS -->
+        <section id="rituals">
+          <div class="section-label">Rituals</div>
+          <h2 class="section-heading">How BORNEO Lives With You</h2>
+          <div class="rituals">
+            <div class="ritual-list">
+              <div>
+                <div class="ritual-title">The Evening Nest Ritual</div>
+                <p>
+                  Hold your Guardian for three slow breaths.<br>
+                  Switch off your phone.<br>
+                  Sink into your pillow.<br>
+                  Let the forest take over.
+                </p>
+              </div>
+              <div>
+                <div class="ritual-title">The Morning Rooting Ritual</div>
+                <p>
+                  Write one line in your Sleep Journal.<br>
+                  Acknowledge your inner forest before the world demands your speed.
+                </p>
+              </div>
+              <div>
+                <div class="ritual-title">The Travel Sanctuary Ritual</div>
+                <p>
+                  Carry your pouch.<br>
+                  Bring calm into unfamiliar rooms, hotel beds, and airport gates.
+                </p>
+              </div>
+            </div>
+            <div class="tagline-soft">
+              Small rituals. Deep grounding.
+            </div>
+          </div>
+        </section>
+
+        <!-- IMPACT -->
+        <section id="impact">
+          <div class="section-label">Impact</div>
+          <h2 class="section-heading">Honoring Borneo With Every Guardian</h2>
+          <div class="impact">
+            <div>
+              <p class="impact-body">
+                We don’t use clichés. We honor roots.<br><br>
+                BORNEO is built on a simple promise: if we are going to borrow the soul of a place, we must help protect it.
+              </p>
+              <p class="impact-body">
+                A portion of every product supports real conservation efforts linked to orangutan protection and rainforest preservation. We work to highlight organizations and initiatives that quietly do the work on the ground — the same way our guardians quietly do the work in your hands.
+              </p>
+              <div class="impact-note">
+                Your Guardian is more than comfort — it is a promise to protect the home that inspired it.
+              </div>
+            </div>
+            <div class="hero-media">
+              <div class="hero-media-tag">Borneo Forest</div>
+              <img src="orangutaneo3.jpg" alt="Borneo rainforest and orangutan environment" class="hero-image" />
+            </div>
+          </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section id="cta-final">
+          <div class="final-cta">
+            <h2>Adopt Your Guardian. Build Your Sanctuary.</h2>
+            <p>
+              Join a quiet community of people who choose rest over rush, wisdom over noise, and roots over chaos. BORNEO is not a trend — it is a way back to yourself.
+            </p>
+            <div class="final-cta-buttons">
+              <button class="btn-primary">
+                Adopt Your Guardian <span>⭑</span>
+              </button>
+              <button class="btn-secondary-link" onclick="document.getElementById('sanctuary').scrollIntoView({behavior: 'smooth'});">
+                <span>↳</span> Explore the Sanctuary
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <div>© <span id="year"></span> BORNEO. All rights reserved.</div>
+        <div>
+          <a href="#top">Back to top ↑</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
